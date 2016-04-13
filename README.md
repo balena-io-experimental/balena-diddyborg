@@ -1,6 +1,7 @@
 # Resin-diddyborg
 a [resin.io](http://resin.io) application that allows to remotely control a [Diddyborg](https://www.piborg.org/diddyborg) via local network *or* [PublicURL](http://docs.resin.io/#/pages/management/devices.md#enable-public-device-url)
 
+![diddyborg spinning](http://snappin.io/img/diddyborg_spinning.gif)
 ### PRE-REQUISITES
 this application is meant to be deployed to [RaspberryPi](https://www.raspberrypi.org/products/) devices via [resin.io](http://resin.io).
 
@@ -18,6 +19,8 @@ The device generates a token each startup and prints it in the resin console.
 simply include in each call's header a `token` parameter with that value
 ##### If you are using the web-dashboard
 type the token in the field and you are ready to go!
+
+![diddyborg spinning](http://snappin.io/img/diddyborg_dashboard.png)
 
 ### Socket events
 
