@@ -1,0 +1,29 @@
+{
+  "name": "resin-diddyborg",
+  "description": "a resin.io application for remote-controlling the piborg diddyborg",
+  "main": "index.js",
+  "authors": [
+    "Carlo Maria Curinga"
+  ],
+  "license": "Apache-2.0",
+  "keywords": [
+    "resin",
+    "io",
+    "piborg",
+    "diddyborg",
+    "borg",
+    "pi",
+    "diddy",
+    "rpi",
+    "raspberry"
+  ],
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

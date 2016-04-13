@@ -1,0 +1,35 @@
+FROM resin/%%RESIN_MACHINE_NAME%%-node:latest
+
+## uncomment if you want systemd
+# ENV INITSYSTEM on
+
+# Install apt deps
+RUN apt-get update && apt-get install -y \
+  apt-utils \
+  build-essential \
+  git \
+  curl \
+  psmisc \
+  libraspberrypi0 \
+  libpcre3 \
+  python-smbus \
+  i2c-tools \
+  && rm -rf /var/lib/apt/lists/*
+
+# Set npm
+RUN npm config set unsafe-perm true && npm config set strict-ssl false
+
+# install bower
+RUN npm i bower -g
+
+# Move package to filesystem
+COPY ./package.json ./app/
+
+# NPM i app
+RUN npm i  --prefix /app
+
+# Move app to filesystem
+COPY . ./app
+
+# Start app
+CMD ["bash", "/app/start.sh"]

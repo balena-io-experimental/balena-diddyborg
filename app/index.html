@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Diddyborg</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--Import Google Icon Font-->
+    <link href="./assets/css/icons.css" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="./assets/css/materialize.min.css">
+  </head>
+  <body>
+
+    <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper indigo">
+          <input id="token" placeholder="TOKEN from resin.io device console" type="text">
+        </div>
+      </nav>
+    </div>
+    <br>
+    <br>
+    <div class="valign-wrapper">
+      <div class="row valign">
+         <div class="col s12 center-align">
+           <a id="fwd_btn" class="waves-effect waves-light btn btn-large orange cmd"><i class="material-icons left">games</i>FWD</a>
+         </div>
+         <div class="col s6 center-align">
+           <a id="left_btn" class="waves-effect waves-light btn btn-large orange cmd"><i class="material-icons left">games</i>LEFT</a>
+         </div>
+         <div class="col s6 center-align">
+           <a id="right_btn" class="waves-effect waves-light btn btn-large orange cmd"><i class="material-icons right">games</i>RIGHT</a>
+         </div>
+         <div class="col s12 center-align">
+           <a id="rwd_btn" class="waves-effect waves-light btn btn-large orange cmd"><i class="material-icons left">games</i>RWD</a>
+         </div>
+       </div>
+     </div>
+     <br>
+     <hr>
+     <br>
+     <div class="valign-wrapper">
+       <div class="row valign">
+         <div class="col s12 center-align">
+            <a id="stop_btn" class="waves-effect waves-light btn btn-large red cmd"><i class="material-icons left">games</i>STOP</a>
+        </div>
+       </div>
+     </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <!-- Socket.io -->
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+    <script>
+      var socket = io();
+      $('#fwd_btn').click(function(){
+        socket.emit('motors',80,$('#token').val());
+      });
+      $('#left_btn').click(function(){
+        socket.emit('motor1',80,$('#token').val());
+        socket.emit('motor2',-80,$('#token').val());
+      });
+      $('#right_btn').click(function(){
+        socket.emit('motor1',-80,$('#token').val());
+        socket.emit('motor2',80,$('#token').val());
+      });
+      $('#rwd_btn').click(function(){
+        socket.emit('motors',-80,$('#token').val());
+      });
+      $('#stop_btn').click(function(){
+        socket.emit('motors',0,$('#token').val());
+      });
+    </script>
+    <!-- / Socket.io -->
+  </body>
+</html>
