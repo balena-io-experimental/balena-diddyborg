@@ -47,6 +47,14 @@
             <div class="valign-wrapper">
                 <div class="row valign">
                     <div class="col s12 center-align">
+                      <label for="gauge">Power</label>
+                      <input id="gauge" value="0" type="number" min="-100" max="100" step="10">
+                    </div>
+                </div>
+            </div>
+            <div class="valign-wrapper">
+                <div class="row valign">
+                    <div class="col s12 center-align">
                         <a id="stop_btn" class="waves-effect waves-light btn btn-large red cmd">
                             <i class="material-icons left">games</i>STOP</a>
                     </div>
@@ -75,18 +83,18 @@
         <script>
             var socket = io();
             $('#fwd_btn').click(function() {
-                socket.emit('motors', 80, $('#token').val());
+                socket.emit('motors', $('#gauge').val(), $('#token').val());
             });
             $('#left_btn').click(function() {
-                socket.emit('motor1', 80, $('#token').val());
-                socket.emit('motor2', -80, $('#token').val());
+                socket.emit('motor1', $('#gauge').val(), $('#token').val());
+                socket.emit('motor2', ($('#gauge').val())*-1, $('#token').val());
             });
             $('#right_btn').click(function() {
-                socket.emit('motor1', -80, $('#token').val());
-                socket.emit('motor2', 80, $('#token').val());
+                socket.emit('motor1', ($('#gauge').val())*-1, $('#token').val());
+                socket.emit('motor2', $('#gauge').val(), $('#token').val());
             });
             $('#rwd_btn').click(function() {
-                socket.emit('motors', -80, $('#token').val());
+                socket.emit('motors', $('#gauge').val(), $('#token').val());
             });
             $('#stop_btn').click(function() {
                 socket.emit('motors', 0, $('#token').val());
