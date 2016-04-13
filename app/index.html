@@ -48,7 +48,7 @@
                 <div class="row valign">
                     <div class="col s12 center-align">
                       <label for="gauge">Power</label>
-                      <input id="gauge" value="0" type="number" min="-100" max="100" step="10">
+                      <input id="gauge" value="0" type="number" min="0" max="100" step="10">
                     </div>
                 </div>
             </div>
@@ -94,7 +94,7 @@
                 socket.emit('motor2', $('#gauge').val(), $('#token').val());
             });
             $('#rwd_btn').click(function() {
-                socket.emit('motors', $('#gauge').val(), $('#token').val());
+                socket.emit('motors', ($('#gauge').val())*-1, $('#token').val());
             });
             $('#stop_btn').click(function() {
                 socket.emit('motors', 0, $('#token').val());
