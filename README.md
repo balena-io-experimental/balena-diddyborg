@@ -27,12 +27,12 @@ set the gauge power for motor1 (right wheels). **power** values between `-100` a
 socket.emit('motor1',80,'token');
 ```
 
-##### GET /motor2/:power
+##### motor2
 set the gauge power for motor2 (left wheels). **power** values between `-100` and `100` are allowed. `0` means __*stop*__
 ```javascript
 socket.emit('motor2',80,'token');
 ```
-##### GET /motors/:power
+##### motors
 set the gauge power for both motors (all wheels). **power** values between `-100` and `100` are allowed. `0` means __*stop*__
 ```javascript
 socket.emit('motors',80,'token');
