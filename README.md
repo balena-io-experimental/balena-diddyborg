@@ -16,7 +16,7 @@ Parameter | Value
 ### Instructions
 The device generates a token each startup and prints it in the resin console.
 ##### If you are working with the apis
-simply include in each call's header a `token` parameter with that value
+simply include in each event the `token` parameter with that value
 ##### If you are using the web-dashboard
 type the token in the field and you are ready to go!
 
