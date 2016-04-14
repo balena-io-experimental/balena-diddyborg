@@ -6,9 +6,6 @@
   const io = require('socket.io')(http);
   const serveStatic = require('serve-static');
   const async = require('async');
-  const raspivid = require('raspivid');
-  const video = raspivid();
-  const fs = require('fs');
   const chalk = require('chalk');
   const randomToken = require('random-token');
   const token = randomToken(6);
