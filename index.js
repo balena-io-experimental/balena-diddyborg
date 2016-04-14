@@ -58,13 +58,6 @@
         console.log('Unauthorized');
       }
     });
-    socket.on('camera', function(power,userToken){
-      if (userToken == token) {
-        console.log('camera coming soon');
-      } else {
-        console.log('Unauthorized');
-      }
-    });
   });
 
   // Stop motors on process close for safety
