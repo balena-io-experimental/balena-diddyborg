@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
         <style media="screen">
         md-slider[md-vertical] {
-          min-height: 55vh;
+          min-height: 50vh;
         }
         </style>
         <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
@@ -20,6 +20,16 @@
         <script src="bower_components/angular-gamepad/dist/angular-gamepad.js" charset="utf-8"></script>
     </head>
     <body ng-controller="DiddyborgController as diddyborg">
+        <md-toolbar>
+          <div class="md-toolbar-tools">
+            <span>Diddyborg Manager</span>
+            <!-- fill up the space between left and right area -->
+            <span flex></span>
+            <md-button>
+              <a target="_blank" href="https://github.com/fwrgit/resin-diddyborg">Fork me on Github!</a>
+            </md-button>
+          </div>
+        </md-toolbar>
       <md-content layout="row" layout-padding>
         <md-input-container flex="100">
           <label>Token</label>
@@ -34,7 +44,7 @@
                         {{diddyborg.motor1 | number:0}}%
                       </p>
                     </md-input-container>
-                    <md-slider ng-model="diddyborg.motor1" min="-100" max="100" step="1" aria-label="lx" id="lx-slider" class="md-accent" md-vertical md-range></md-slider>
+                    <md-slider class="md-primary" ng-model="diddyborg.motor1" min="-100" max="100" step="1" aria-label="lx" id="lx-slider" class="md-accent" md-vertical md-range></md-slider>
                     <h5>Left Motor</h5>
                 </md-slider-container>
                 <div class="" flex="60">
@@ -46,7 +56,7 @@
                           {{diddyborg.motor2 | number:0}}%
                         </p>
                     </md-input-container>
-                    <md-slider ng-model="diddyborg.motor2" min="-100" max="100" step="1" aria-label="rx" id="rx-slider" class="md-accent" md-vertical md-range></md-slider>
+                    <md-slider class="md-primary" ng-model="diddyborg.motor2" min="-100" max="100" step="1" aria-label="rx" id="rx-slider" class="md-accent" md-vertical md-range></md-slider>
                     <h5>Right Motor</h5>
                 </md-slider-container>
             </md-content>
