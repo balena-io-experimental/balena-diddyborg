@@ -1,10 +1,13 @@
 function DiddyborgService() {
+  'use strict';
   var socket = io();
   function motorRight(gaugeRight,token) {
-    return socket.emit('motor1', gaugeRight, token);
+    socket.emit('motor1', gaugeRight, token);
+    return gaugeRight;
   }
   function motorLeft(gaugeLeft,token) {
-    return socket.emit('motor2', gaugeLeft,token);
+    socket.emit('motor2', gaugeLeft,token);
+    return gaugeLeft;
   }
 
   return {
