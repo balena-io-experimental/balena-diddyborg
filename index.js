@@ -12,10 +12,10 @@
 
   /* Express */
   app.get('/', function(req, res){
-    res.sendfile(__dirname+'/app/index.html');
+    res.sendfile(__dirname+'/index.html');
   });
 
-  app.use(serveStatic(__dirname+'/app', {'index': ['index.html']}));
+  app.use(serveStatic(__dirname, {'index': ['index.html']}));
   http.listen(80, function () {
     console.log('AccessToken: '+chalk.cyan(token));
   });
