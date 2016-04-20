@@ -22,14 +22,29 @@ RUN npm config set unsafe-perm true && npm config set strict-ssl false
 # install bower
 RUN npm i bower -g
 
+# Save source folder
+RUN printf "%s\n" "${PWD##}" > SOURCEFOLDER
+
 # Move package to filesystem
-COPY ./package.json ./app/
+COPY ./bower.json ./app/
+
+# Move to app dir
+WORKDIR /app
+
+# Bower install
+RUN bower i --allow-root
+
+# Move package to filesystem
+COPY "$SOURCEFOLDER/package.json" ./
 
 # NPM i app
 RUN npm i  --prefix /app
 
 # Move app to filesystem
-COPY . ./app
+COPY "$SOURCEFOLDER" ./
+
+# Move to /
+WORKDIR /
 
 # Start app
 CMD ["bash", "/app/start.sh"]

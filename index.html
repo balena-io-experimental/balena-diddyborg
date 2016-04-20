@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="ngDiddyborg">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Angular Material style sheet -->
+        <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+        <style media="screen">
+        md-slider[md-vertical] {
+          min-height: 60vh;
+        }
+        </style>
+        <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+        <script src="bower_components/angular/angular.js" charset="utf-8"></script>
+        <script src="bower_components/angular-animate/angular-animate.js" charset="utf-8"></script>
+        <script src="bower_components/angular-aria/angular-aria.js" charset="utf-8"></script>
+        <script src="bower_components/angular-messages/angular-messages.js" charset="utf-8"></script>
+        <script src="bower_components/angular-material/angular-material.js" charset="utf-8"></script>
+        <script src="bower_components/angular-gamepad/dist/angular-gamepad.js" charset="utf-8"></script>
+    </head>
+    <body ng-controller="DiddyborgController as diddyborg">
+      <md-content layout="row" layout-padding>
+        <md-input-container flex="100">
+          <label>Token</label>
+          <input type="text" ng-model="diddyborg.token" required>
+        </md-input-container>
+      </md-content>
+        <div ng-controller="GamepadCtrl">
+            <md-content layout="row" layout-padding>
+                <md-slider-container flex="20">
+                    <md-input-container>
+                      <p flex poll gauge-left="{{gamepads[0].LS.Y}}">
+                        {{(gamepads[0].LS.Y)*100 | number:0}}%
+                      </p>
+                    </md-input-container>
+                    <md-slider ng-model="gamepads[0].LS.Y" min="-1" max="1" step="0.001" aria-label="lx" id="lx-slider" class="md-accent" md-vertical md-range></md-slider>
+                    <h5>Left Motor</h5>
+                </md-slider-container>
+                <div class="" flex="60">
+
+                </div>
+                <md-slider-container flex="20">
+                    <md-input-container>
+                        <p flex poll gauge-right="{{gamepads[0].RS.Y}}">
+                          {{(gamepads[0].RS.Y)*100 | number:0}}%
+                        </p>
+                    </md-input-container>
+                    <md-slider ng-model="gamepads[0].RS.Y" min="-1" max="1" step="0.001" aria-label="rx" id="rx-slider" class="md-accent" md-vertical md-range></md-slider>
+                    <h5>Right Motor</h5>
+                </md-slider-container>
+            </md-content>
+        </div>
+        <script src="app/js/app.module.js" charset="utf-8"></script>
+        <script src="app/js/diddyborg.controller.js" charset="utf-8"></script>
+        <script src="app/js/diddyborg.service.js" charset="utf-8"></script>
+        <script src="app/js/diddyborg.directive.js" charset="utf-8"></script>
+    </body>
+</html>
