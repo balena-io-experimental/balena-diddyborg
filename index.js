@@ -9,7 +9,7 @@
   const chalk = require('chalk');
   const randomToken = require('random-token');
   const token = randomToken(6);
-
+  let MotorsGaugeCohefficient = (process.env.INVERT_MOTORS_DIRECTION === "0") ? 1 : -1;
   /* Express */
   app.get('/', function(req, res){
     res.sendfile(__dirname+'/index.html');
@@ -24,7 +24,7 @@
   io.on('connection', function(socket){
     socket.on('motor1', function(power,userToken){
       if (userToken == token) {
-        pbr.SetMotor1(power, function(err){
+        pbr.SetMotor1(power*MotorsGaugeCohefficient, function(err){
           if (err){
               console.error(err);
           }
@@ -35,7 +35,7 @@
     });
     socket.on('motor2', function(power,userToken){
       if (userToken == token) {
-        pbr.SetMotor2(power, function(err){
+        pbr.SetMotor2(power*MotorsGaugeCohefficient, function(err){
           if (err){
               console.error(err);
           }
@@ -46,7 +46,7 @@
     });
     socket.on('motors', function(power,userToken){
       if (userToken == token) {
-        pbr.SetMotors(power, function(err){
+        pbr.SetMotors(power*MotorsGaugeCohefficient, function(err){
           if (err){
               console.error(err);
           }
