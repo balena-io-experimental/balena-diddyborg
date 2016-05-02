@@ -52,24 +52,33 @@
             <md-content layout="row" layout-padding>
                 <md-slider-container flex="10">
                     <md-input-container>
-                        <p flex poll gauge-left="{{gamepads[0].LS.Y}}">
+                        <p flex poll gauge-left="{{gamepads[0].RS.Y}}">
                             {{diddyborg.motor1 | number:0}}%
                         </p>
                     </md-input-container>
                     <md-slider class="md-primary" ng-model="diddyborg.motor1" min="-100" max="100" step="1" aria-label="lx" id="lx-slider" class="md-accent" md-vertical md-range></md-slider>
-                    <h5>Left Motor</h5>
+                    <h5>
+                      <md-icon class="cl-white">
+                        av_timer
+                      </md-icon>
+                      Left Motor</h5>
                 </md-slider-container>
                 <div flex=80>
 
                 </div>
                 <md-slider-container flex="10">
                     <md-input-container>
-                        <p flex poll gauge-right="{{gamepads[0].RS.Y}}">
+                        <p flex poll gauge-right="{{gamepads[0].LS.Y}}">
                             {{diddyborg.motor2 | number:0}}%
                         </p>
                     </md-input-container>
                     <md-slider class="md-primary" ng-model="diddyborg.motor2" min="-100" max="100" step="1" aria-label="rx" id="rx-slider" class="md-accent" md-vertical md-range></md-slider>
-                    <h5>Right Motor</h5>
+                    <h5>
+                      <md-icon class="cl-white">
+                        av_timer
+                      </md-icon>
+                      Right Motor
+                    </h5>
                 </md-slider-container>
             </md-content>
         </div>
