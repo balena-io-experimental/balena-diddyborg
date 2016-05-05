@@ -6,6 +6,7 @@
   const expressWs = require('express-ws')(app);
   const io = require('socket.io')(http);
   const serveStatic = require('serve-static');
+  const exec = require('child_process').exec;
   const async = require('async');
   const chalk = require('chalk');
   const randomToken = require('random-token');
@@ -14,22 +15,24 @@
 
   let MotorsGaugeCohefficient = (process.env.INVERT_MOTORS_DIRECTION === "0") ? 1 : -1;
   /* Express */
-  app.get('/', function(req, res){
-    res.sendfile(__dirname+'/index.html');
+  app.get('/', function(req, res) {
+    res.sendfile(__dirname + '/index.html');
   });
 
-  app.use(serveStatic(__dirname, {'index': ['index.html']}));
-  http.listen(80, function () {
-    console.log('AccessToken: '+chalk.cyan(token));
+  app.use(serveStatic(__dirname, {
+    'index': ['index.html']
+  }));
+  app.listen(80, function() {
+    console.log('AccessToken: ' + chalk.cyan(token));
   });
 
   /* Socket */
   io.on('connection', function(socket) {
     socket.on('motor1', function(power, userToken) {
       if (userToken == token) {
-        pbr.SetMotor1(power*MotorsGaugeCohefficient, function(err){
-          if (err){
-              console.error(err);
+        pbr.SetMotor1(power * MotorsGaugeCohefficient, function(err) {
+          if (err) {
+            console.error(err);
           }
         });
       } else {
@@ -38,9 +41,9 @@
     });
     socket.on('motor2', function(power, userToken) {
       if (userToken == token) {
-        pbr.SetMotor2(power*MotorsGaugeCohefficient, function(err){
-          if (err){
-              console.error(err);
+        pbr.SetMotor2(power * MotorsGaugeCohefficient, function(err) {
+          if (err) {
+            console.error(err);
           }
         });
       } else {
@@ -49,9 +52,9 @@
     });
     socket.on('motors', function(power, userToken) {
       if (userToken == token) {
-        pbr.SetMotors(power*MotorsGaugeCohefficient, function(err){
-          if (err){
-              console.error(err);
+        pbr.SetMotors(power * MotorsGaugeCohefficient, function(err) {
+          if (err) {
+            console.error(err);
           }
         });
       } else {
@@ -114,12 +117,9 @@
     }
   };
 
-  app.use('/stream/:width/:height', function(req, res) {
+  app.use('/stream', function(req, res) {
     if (req.params.password === STREAM_SECRET) {
       res.connection.setTimeout(0);
-
-      width = (req.params.width || 320) | 0;
-      height = (req.params.height || 240) | 0;
 
       console.log('Stream Connected: ' + req.socket.remoteAddress + ':' + req.socket.remotePort + ' size: ' + width + 'x' + height);
       req.on('data', function(data) {
@@ -133,5 +133,5 @@
     }
   });
 
-  exec('ffmpeg -s ' + height + 'x' + width + ' -f video4linux2 -i /dev/video0 -f mpeg1video -vf "transpose=1" -b 800k -r 30 http://127.0.0.1:8082/stream/' + width + '/' + height + '/');
+  exec('ffmpeg -s ' + height + 'x' + width + ' -f video4linux2 -i /dev/video0 -f mpeg1video -vf "transpose=1" -b 800k -r 30 http://127.0.0.1:8082/stream/');
 })();

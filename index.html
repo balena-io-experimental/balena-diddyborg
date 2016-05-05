@@ -21,7 +21,12 @@
             md-slider[md-vertical] {
                 min-height: 45vh;
             }
-
+            #videoCanvas {
+              /* Always stretch the canvas to 640x480, regardless of its
+              internal size. */
+              width: 640px;
+              height: 480px;
+            }
         </style>
         <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
         <script src="bower_components/angular/angular.js" charset="utf-8"></script>
@@ -64,7 +69,14 @@
                       Left Motor</h5>
                 </md-slider-container>
                 <div flex=80>
-
+                  <canvas id="videoCanvas" width="640" height="480">
+                    <p>
+                      Please use a browser that supports the Canvas Element, like
+                      <a href="http://www.google.com/chrome">Chrome</a>,
+                      <a href="http://www.mozilla.com/firefox/">Firefox</a>,
+                      <a href="http://www.apple.com/safari/">Safari</a> or Internet Explorer 10
+                    </p>
+                  </canvas>
                 </div>
                 <md-slider-container flex="10">
                     <md-input-container>
@@ -86,5 +98,13 @@
         <script src="app/js/diddyborg.controller.js" charset="utf-8"></script>
         <script src="app/js/diddyborg.service.js" charset="utf-8"></script>
         <script src="app/js/diddyborg.directive.js" charset="utf-8"></script>
+        <script type="text/javascript" src="app/lib/jsmpg.js"></script>
+        <script type="text/javascript">
+          // Setup the WebSocket connection and start the player
+          var client = new WebSocket( 'ws://192.168.178.49:80/' );
+
+          var canvas = document.getElementById('videoCanvas');
+          var player = new jsmpeg(client, {canvas:canvas});
+        </script>
     </body>
 </html>

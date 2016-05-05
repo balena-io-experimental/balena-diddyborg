@@ -21,6 +21,7 @@
     "async": "^2.0.0-rc.3",
     "chalk": "^1.1.3",
     "express": "^4.13.4",
+    "express-ws": "^2.0.0-rc.1",
     "picoborgrev": "https://github.com/curcuz/picoborgrev",
     "random-token": "0.0.8",
     "raspivid": "^1.0.0",
