@@ -5,6 +5,14 @@ a [resin.io](http://resin.io) application that allows to remotely control a [Did
 ### PRE-REQUISITES
 this application is meant to be deployed to [RaspberryPi](https://www.raspberrypi.org/products/) devices via [resin.io](http://resin.io).
 
+[Environment Variables](http://docs.resin.io/management/env-vars) parameters:
+
+Parameter | Value | Description
+------------ | -------------
+**INVERT_MOTORS_DIRECTION** | `0`,`1` | if set to `1` inverts direction handling of motors.
+**INVERT_JOYPAD_DIRECTION** | `0`,`1` | if set to `1` inverts direction handling of sticks.
+**INVERT_JOYPAD_AXES** | `0`,`1` | if set to `1` swaps L and R sticks.
+
 [Advanced Boot Configuration](http://docs.resin.io/#/pages/configuration/advanced.md#modifying-config-txt-remotely-) parameters:
 
 Parameter | Value

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html ng-app="ngDiddyborg">
+    <head>
+        <meta charset="utf-8">
+        <title>Resin-Diddyborg</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=11,chrome=1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="msapplication-TileColor" content="#FFC107">
+        <meta name="msapplication-TileImage" content="/img/favicon/ms-icon-144x144.png">
+        <meta name="theme-color" content="#FFC107">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Angular Material style sheet -->
+        <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+        <style media="screen">
+            md-slider[md-vertical] {
+                min-height: 45vh;
+            }
+
+        </style>
+        <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+        <script src="bower_components/angular/angular.js" charset="utf-8"></script>
+        <script src="bower_components/angular-animate/angular-animate.js" charset="utf-8"></script>
+        <script src="bower_components/angular-aria/angular-aria.js" charset="utf-8"></script>
+        <script src="bower_components/angular-messages/angular-messages.js" charset="utf-8"></script>
+        <script src="bower_components/angular-material/angular-material.js" charset="utf-8"></script>
+        <script src="bower_components/angular-gamepad/dist/angular-gamepad.js" charset="utf-8"></script>
+    </head>
+    <body ng-controller="DiddyborgController as diddyborg">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <span>Diddyborg Manager</span>
+                <!-- fill up the space between left and right area -->
+                <span flex></span>
+                <md-button>
+                    <a target="_blank" href="https://github.com/fwrgit/resin-diddyborg">Fork me on Github!</a>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-content layout="row" layout-padding>
+            <md-input-container flex="100">
+                <label>Token</label>
+                <input type="text" ng-model="diddyborg.token" required>
+            </md-input-container>
+        </md-content>
+        <div ng-controller="GamepadCtrl">
+            <md-content layout="row" layout-padding>
+                <md-slider-container flex="10">
+                    <md-input-container>
+                        <p flex poll gauge-left="{{gamepads[0].RS.Y}}">
+                            {{diddyborg.motor1 | number:0}}%
+                        </p>
+                    </md-input-container>
+                    <md-slider class="md-primary" ng-model="diddyborg.motor1" min="-100" max="100" step="1" aria-label="lx" id="lx-slider" class="md-accent" md-vertical md-range></md-slider>
+                    <h5>
+                      <md-icon class="cl-white">
+                        av_timer
+                      </md-icon>
+                      Left Motor</h5>
+                </md-slider-container>
+                <div flex=80>
+
+                </div>
+                <md-slider-container flex="10">
+                    <md-input-container>
+                        <p flex poll gauge-right="{{gamepads[0].LS.Y}}">
+                            {{diddyborg.motor2 | number:0}}%
+                        </p>
+                    </md-input-container>
+                    <md-slider class="md-primary" ng-model="diddyborg.motor2" min="-100" max="100" step="1" aria-label="rx" id="rx-slider" class="md-accent" md-vertical md-range></md-slider>
+                    <h5>
+                      <md-icon class="cl-white">
+                        av_timer
+                      </md-icon>
+                      Right Motor
+                    </h5>
+                </md-slider-container>
+            </md-content>
+        </div>
+        <script src="app/js/app.module.js" charset="utf-8"></script>
+        <script src="app/js/diddyborg.controller.js" charset="utf-8"></script>
+        <script src="app/js/diddyborg.service.js" charset="utf-8"></script>
+        <script src="app/js/diddyborg.directive.js" charset="utf-8"></script>
+    </body>
+</html>

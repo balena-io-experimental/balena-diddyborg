@@ -12,25 +12,24 @@
   const token = randomToken(6);
   const STREAM_MAGIC_BYTES = 'jsmp';
 
+  let MotorsGaugeCohefficient = (process.env.INVERT_MOTORS_DIRECTION === "0") ? 1 : -1;
   /* Express */
-  app.get('/', function(req, res) {
-    res.sendfile(__dirname + '/app/index.html');
+  app.get('/', function(req, res){
+    res.sendfile(__dirname+'/index.html');
   });
 
-  app.use(serveStatic(__dirname + '/app', {
-    'index': ['index.html']
-  }));
-  app.listen(80, function() {
-    console.log('AccessToken: ' + chalk.cyan(token));
+  app.use(serveStatic(__dirname, {'index': ['index.html']}));
+  http.listen(80, function () {
+    console.log('AccessToken: '+chalk.cyan(token));
   });
 
   /* Socket */
   io.on('connection', function(socket) {
     socket.on('motor1', function(power, userToken) {
       if (userToken == token) {
-        pbr.SetMotor1(power, function(err) {
-          if (err) {
-            console.error(err);
+        pbr.SetMotor1(power*MotorsGaugeCohefficient, function(err){
+          if (err){
+              console.error(err);
           }
         });
       } else {
@@ -39,9 +38,9 @@
     });
     socket.on('motor2', function(power, userToken) {
       if (userToken == token) {
-        pbr.SetMotor2(power, function(err) {
-          if (err) {
-            console.error(err);
+        pbr.SetMotor2(power*MotorsGaugeCohefficient, function(err){
+          if (err){
+              console.error(err);
           }
         });
       } else {
@@ -50,9 +49,9 @@
     });
     socket.on('motors', function(power, userToken) {
       if (userToken == token) {
-        pbr.SetMotors(power, function(err) {
-          if (err) {
-            console.error(err);
+        pbr.SetMotors(power*MotorsGaugeCohefficient, function(err){
+          if (err){
+              console.error(err);
           }
         });
       } else {

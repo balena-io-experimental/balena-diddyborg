@@ -17,6 +17,11 @@
     "rpi",
     "raspberry"
   ],
+  "dependencies": {
+    "angular": "angularjs#^1.5.5",
+    "angular-gamepad": "^0.1.0",
+    "angular-material": "master"
+  },
   "moduleType": [],
   "homepage": "",
   "ignore": [
@@ -25,5 +30,8 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "resolutions": {
+    "angular": "^1.5.5"
+  }
 }
