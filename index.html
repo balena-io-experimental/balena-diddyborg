@@ -21,6 +21,9 @@
             md-slider[md-vertical] {
                 min-height: 45vh;
             }
+            #stream {
+              text-align: center
+            }
             #videoCanvas {
               /* Always stretch the canvas to 640x480, regardless of its
               internal size. */
@@ -68,7 +71,7 @@
                       </md-icon>
                       Left Motor</h5>
                 </md-slider-container>
-                <div flex=80>
+                <div id="stream" flex=80>
                   <canvas id="videoCanvas" width="640" height="480">
                     <p>
                       Please use a browser that supports the Canvas Element, like
