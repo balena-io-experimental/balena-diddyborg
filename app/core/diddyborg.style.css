@@ -1,0 +1,90 @@
+/*GLOBAL*/
+
+.cursor {
+  cursor: pointer;
+}
+.cl-white {
+  color: #fff
+}
+.text-right{
+  text-align: right;
+}
+md-divider{
+  width: 100%;
+}
+
+
+/*END GLOBAL*/
+
+md-slider[md-vertical] {
+  min-height: 45vh;
+}
+#stream {
+  text-align: center
+}
+
+#joypadVideoCanvas {
+  /* Always stretch the canvas to 640x480, regardless of its internal size. */
+  height: auto;
+  background: black;
+}
+
+/*SIDENAV RULES*/
+
+md-sidenav > div > header {
+  height: 64px;
+  background-color: rgb(255, 193, 7);
+}
+#menu-container ul li {
+  padding: 10px;
+  background: black;
+  color: #fff;
+  margin-bottom: 5px;
+}
+#menu-container ul li md-icon {
+  background: #fff;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+.md-dialog-container > md-dialog{
+  width: 40%;
+  padding: 20px;
+}
+
+#token-modal{
+  text-align: center;
+}
+
+#token-modal > md-input-container{
+  width: 80%;
+  text-align: left;
+}
+
+/*TOUCH*/
+#touchVideoCanvas {
+  /* Always stretch the canvas to 640x480, regardless of its internal size. */
+  width: 100%;
+  height: auto;
+  background: black;
+}
+
+.touch-btn{
+  padding: 10px 35px;
+}
+
+#touch-power-slider{
+  width: 60%;
+}
+
+/*KEYBOARD*/
+
+#keyboard-canvas-container{
+  width: 840px;
+}
+
+#keyboardVideoCanvas {
+  /* Always stretch the canvas to 640x480, regardless of its internal size. */
+  height: auto;
+  background: black;
+}

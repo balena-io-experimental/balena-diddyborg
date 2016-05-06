@@ -1,0 +1,32 @@
+<div ng-controller="GamepadCtrl">
+    <md-content layout="column" layout-padding layout-align="center center" keyboard>
+        <div>
+          <md-icon>arrow_upward</md-icon>
+        </div>
+        <div id="keyboard-canvas-container" layout="row" layout-align="center center">
+          <div flex="10">
+            <md-icon>arrow_back</md-icon>
+          </div>
+          <div id="stream" flex="80">
+            <canvas id="keyboardVideoCanvas" width="640" height="480">
+              <p>
+                Please use a browser that supports the Canvas Element, like
+                <a href="http://www.google.com/chrome">Chrome</a>,
+                <a href="http://www.mozilla.com/firefox/">Firefox</a>,
+                <a href="http://www.apple.com/safari/">Safari</a> or Internet Explorer 10
+              </p>
+            </canvas>
+          </div>
+          <div flex="10" class="text-right">
+            <md-icon>arrow_forward</md-icon>
+          </div>
+        </div>
+        <div>
+          <md-icon>arrow_downward</md-icon>
+        </div>
+        <p>Power ({{digital.power | number:0}} - 100)</p>
+        <md-slider-container id="touch-power-slider">
+          <md-slider aria-label="lx" class="md-accent" class="md-primary" id="lx-slider" max="100" md-range min="0" ng-model="digital.power" step="1"></md-slider>
+        </md-slider-container>
+    </md-content>
+</div>

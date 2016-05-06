@@ -1,0 +1,26 @@
+<md-toolbar>
+  <div class="md-toolbar-tools">
+    <md-button aria-label="menu" class="md-icon-button" ng-click="diddyborg.toggleSidenav('left')">
+      <md-icon>
+        menu
+      </md-icon>
+    </md-button>
+    <span>Diddyborg Manager</span>
+    <!-- fill up the space between left and right area -->
+    <span flex></span>
+    <md-button aria-label="menu" class="md-icon-button" ng-click="diddyborg.openTokenModal()">
+      <md-icon>
+        settings
+      </md-icon>
+    </md-button>
+    <md-button>
+      <a href="https://github.com/fwrgit/resin-diddyborg" target="_blank">Fork me on Github!</a>
+    </md-button>
+  </div>
+</md-toolbar>
+
+<md-sidenav class="md-sidenav-left md-primary" md-component-id="left" md-is-open="false">
+  <div data-ng-include="'app/partials/sidenav.template.html'"></div>
+</md-sidenav>
+
+<div ui-view></div>

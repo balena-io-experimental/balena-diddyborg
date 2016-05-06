@@ -1,0 +1,47 @@
+<!-- <md-content layout="row" layout-padding>
+    <md-input-container flex="100">
+        <label>Token</label>
+        <input type="text" ng-model="diddyborg.token" required>
+    </md-input-container>
+</md-content> -->
+<div ng-controller="GamepadCtrl">
+    <md-content layout="row" layout-padding layout-align="center center">
+        <md-slider-container flex="10">
+            <md-input-container>
+                <p flex poll gauge-left="{{gamepads[0].RS.Y}}">
+                    {{diddyborg.motor1 | number:0}}%
+                </p>
+            </md-input-container>
+            <md-slider class="md-primary" ng-model="diddyborg.motor1" min="-100" max="100" step="1" aria-label="lx" id="lx-slider" class="md-accent" md-vertical md-range></md-slider>
+            <h5>
+              <md-icon class="cl-white">
+                av_timer
+              </md-icon>
+              Left Motor</h5>
+        </md-slider-container>
+        <div id="stream" flex=80>
+          <canvas id="joypadVideoCanvas" width="640" height="480">
+            <p>
+              Please use a browser that supports the Canvas Element, like
+              <a href="http://www.google.com/chrome">Chrome</a>,
+              <a href="http://www.mozilla.com/firefox/">Firefox</a>,
+              <a href="http://www.apple.com/safari/">Safari</a> or Internet Explorer 10
+            </p>
+          </canvas>
+        </div>
+        <md-slider-container flex="10">
+            <md-input-container>
+                <p flex poll gauge-right="{{gamepads[0].LS.Y}}">
+                    {{diddyborg.motor2 | number:0}}%
+                </p>
+            </md-input-container>
+            <md-slider class="md-primary" ng-model="diddyborg.motor2" min="-100" max="100" step="1" aria-label="rx" id="rx-slider" class="md-accent" md-vertical md-range></md-slider>
+            <h5>
+              <md-icon class="cl-white">
+                av_timer
+              </md-icon>
+              Right Motor
+            </h5>
+        </md-slider-container>
+    </md-content>
+</div>

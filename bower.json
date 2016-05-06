@@ -20,7 +20,8 @@
   "dependencies": {
     "angular": "angularjs#^1.5.5",
     "angular-gamepad": "^0.1.0",
-    "angular-material": "master"
+    "angular-material": "master",
+    "angular-ui-router": "^0.2.18"
   },
   "moduleType": [],
   "homepage": "",
