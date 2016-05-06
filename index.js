@@ -24,9 +24,40 @@
   }));
 
   /* Socket */
+  // io.on('connection', function(socket,) {
   app.ws('/motor', function(socket, req) {
     socket.on('message', function(msg) {
       console.log('msg', msg);
+
+      let event = msg.event;
+      let power = msg.power;
+      let userToken = msg.token;
+
+      if (userToken == token) {
+        switch (event) {
+          case 'motor1':
+            pbr.SetMotor1(power * MotorsGaugeCohefficient, function(err) {
+              if (err) {
+                console.error(err);
+              }
+            });
+            break;
+          case 'motor2':
+            pbr.SetMotor2(power * MotorsGaugeCohefficient, function(err) {
+              if (err) {
+                console.error(err);
+              }
+            });
+            break;
+          case 'motors':
+            pbr.SetMotors(power * MotorsGaugeCohefficient, function(err) {
+              if (err) {
+                console.error(err);
+              }
+            });
+            break;
+        }
+      }
     });
 
     // socket.on('motor1', function(power, userToken) {
@@ -64,21 +95,21 @@
     // });
   });
 
-  // // Stop motors on process close for safety
-  // process.on('SIGINT', function() {
-  //   pbr.MotorsOff(function(err) {
-  //     if (err) {
-  //       console.log("Error: " + err);
-  //     }
-  //   });
-  // });
-  // process.on('SIGTERM', function() {
-  //   pbr.MotorsOff(function(err) {
-  //     if (err) {
-  //       console.log("Error: " + err);
-  //     }
-  //   });
-  // });
+  // Stop motors on process close for safety
+  process.on('SIGINT', function() {
+    pbr.MotorsOff(function(err) {
+      if (err) {
+        console.log("Error: " + err);
+      }
+    });
+  });
+  process.on('SIGTERM', function() {
+    pbr.MotorsOff(function(err) {
+      if (err) {
+        console.log("Error: " + err);
+      }
+    });
+  });
 
   // streaming ------------------------------------
   let width = process.env.STREAM_WIDTH || 640;
@@ -131,7 +162,7 @@
 
   exec('ffmpeg -s ' + width + 'x' + height + ' -f video4linux2 -i /dev/video0 -f mpeg1video -vf "transpose=2,transpose=2"  -b 800k -r 30 http://127.0.0.1:80/stream/');
 
-  app.listen(80, function() {
+  app.listen(8080, function() {
     console.log('AccessToken: ' + chalk.cyan(token));
   });
 })();

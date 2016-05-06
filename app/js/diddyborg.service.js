@@ -7,6 +7,7 @@ function DiddyborgService() {
   socket.onopen = function(event) {
     console.log('Motors connected');
     connected = true;
+    motorRight(80,'token');
 
     socket.onclose = function(event) {
       connected = false;
@@ -16,14 +17,14 @@ function DiddyborgService() {
 
   function motorRight(gaugeRight, token) {
     console.log('motorRight');
-    if (connected) socket.send('motor1', gaugeRight, token);
+    if (connected) socket.send({event: 'motor1', power: gaugeRight, token: token});
     else console.log('Motors not connected');
     return -gaugeRight;
   }
 
   function motorLeft(gaugeLeft, token) {
     console.log('motorLeft');
-    if (connected) socket.send('motor2', gaugeLeft, token);
+    if (connected) socket.send({event: 'motor2', power: gaugeLeft, token: token});
     else console.log('Motors not connected');
     return -gaugeLeft;
   }
