@@ -1,7 +1,9 @@
 function DiddyborgService() {
   'use strict';
 
-  let socket = new WebSocket( 'ws://192.168.178.49:80/motor' );
+  let host = window.location.host;
+
+  let socket = new WebSocket( 'ws://' + host + '/motor' );
 
   let connected = false;
   socket.onopen = function(event) {

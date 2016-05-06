@@ -103,8 +103,9 @@
         <script src="app/js/diddyborg.directive.js" charset="utf-8"></script>
         <script type="text/javascript" src="app/lib/jsmpg.js"></script>
         <script type="text/javascript">
+          var host = window.location.host;
           // Setup the WebSocket connection and start the player
-          var client = new WebSocket( 'ws://192.168.178.49:80/stream' );
+          var client = new WebSocket( 'ws://' + host + '/stream' );
 
           var canvas = document.getElementById('videoCanvas');
           var player = new jsmpeg(client, {canvas:canvas});
