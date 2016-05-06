@@ -27,36 +27,37 @@
   // io.on('connection', function(socket,) {
   app.ws('/motor', function(socket, req) {
     socket.on('message', function(msg) {
-      console.log('msg', msg);
+      console.log('msg', JSON.stringify(msg));
 
-      let event = msg.event;
-      let power = msg.power;
-      let userToken = msg.token;
-
-      if (userToken == token) {
-        switch (event) {
+      if (msg.token == token) {
+        switch (msg.event) {
           case 'motor1':
-            pbr.SetMotor1(power * MotorsGaugeCohefficient, function(err) {
+            console.log('motor1');
+            pbr.SetMotor1(msg.power * MotorsGaugeCohefficient, function(err) {
               if (err) {
                 console.error(err);
               }
             });
             break;
           case 'motor2':
-            pbr.SetMotor2(power * MotorsGaugeCohefficient, function(err) {
+            console.log('motor2');
+            pbr.SetMotor2(msg.power * MotorsGaugeCohefficient, function(err) {
               if (err) {
                 console.error(err);
               }
             });
             break;
           case 'motors':
-            pbr.SetMotors(power * MotorsGaugeCohefficient, function(err) {
+            console.log('motors');
+            pbr.SetMotors(msg.power * MotorsGaugeCohefficient, function(err) {
               if (err) {
                 console.error(err);
               }
             });
             break;
         }
+      } else {
+        console.log('Unauthorized');
       }
     });
 
