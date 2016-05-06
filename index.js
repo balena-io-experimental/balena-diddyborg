@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  // const pbr = require('picoborgrev').picoborgrev();
+  const pbr = require('picoborgrev').picoborgrev();
   const app = require('express')();
   // const http = require('http').Server(app);
   const expressWs = require('express-ws')(app);
