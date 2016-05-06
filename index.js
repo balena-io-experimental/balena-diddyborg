@@ -129,8 +129,7 @@
     });
   });
 
-  exec('ffmpeg -s ' + height + 'x' + width + ' -f video4linux2 -i /dev/video0 -f mpeg1video -vf "transpose=1" -b 800k -r 30 http://127.0.0.1:80/stream/');
-
+  exec('ffmpeg -s ' + width + 'x' + height + ' -f video4linux2 -i /dev/video0 -f mpeg1video -vf "transpose=2,transpose=2"  -b 800k -r 30 http://127.0.0.1:80/stream/');
 
   app.listen(80, function() {
     console.log('AccessToken: ' + chalk.cyan(token));
