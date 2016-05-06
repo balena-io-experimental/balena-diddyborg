@@ -27,12 +27,16 @@
   // io.on('connection', function(socket,) {
   app.ws('/motor', function(socket, req) {
     socket.on('message', function(msg) {
-      msg = JSON.parse(msg);
+      try {
+        msg = JSON.parse(msg);
+      } catch(err) {
+        console.log('Message json parse error: ' + err);
+        return;
+      }
 
       if (msg.token == token) {
         switch (msg.event) {
           case 'motor1':
-            console.log('motor1');
             pbr.SetMotor1(msg.power * MotorsGaugeCohefficient, function(err) {
               if (err) {
                 console.error(err);
@@ -40,7 +44,6 @@
             });
             break;
           case 'motor2':
-            console.log('motor2');
             pbr.SetMotor2(msg.power * MotorsGaugeCohefficient, function(err) {
               if (err) {
                 console.error(err);
@@ -48,7 +51,6 @@
             });
             break;
           case 'motors':
-            console.log('motors');
             pbr.SetMotors(msg.power * MotorsGaugeCohefficient, function(err) {
               if (err) {
                 console.error(err);
