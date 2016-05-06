@@ -17,14 +17,14 @@ function DiddyborgService() {
 
   function motorRight(gaugeRight, token) {
     console.log('motorRight');
-    if (connected) socket.send({event: 'motor1', power: gaugeRight, token: token});
+    if (connected) socket.send(JSON.stringify({event: 'motor1', power: gaugeRight, token: token}));
     else console.log('Motors not connected');
     return -gaugeRight;
   }
 
   function motorLeft(gaugeLeft, token) {
     console.log('motorLeft');
-    if (connected) socket.send({event: 'motor2', power: gaugeLeft, token: token});
+    if (connected) socket.send(JSON.stringify({event: 'motor2', power: gaugeLeft, token: token}));
     else console.log('Motors not connected');
     return -gaugeLeft;
   }
