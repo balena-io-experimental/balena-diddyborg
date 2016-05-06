@@ -27,7 +27,7 @@
   // io.on('connection', function(socket,) {
   app.ws('/motor', function(socket, req) {
     socket.on('message', function(msg) {
-      console.log('msg', JSON.stringify(msg));
+      console.log('msg', typeof msg, msg.token, msg.event, msg.power);
 
       if (msg.token == token) {
         switch (msg.event) {
