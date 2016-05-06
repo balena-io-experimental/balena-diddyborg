@@ -119,19 +119,14 @@
   };
 
   app.use('/stream', function(req, res) {
-    if (req.params.password === STREAM_SECRET) {
-      res.connection.setTimeout(0);
+    res.connection.setTimeout(0);
 
-      console.log('Stream Connected: ' + req.socket.remoteAddress + ':' + req.socket.remotePort + ' size: ' + width + 'x' + height);
-      req.on('data', function(data) {
-        socketServer.broadcast(data, {
-          binary: true
-        });
+    console.log('Stream Connected: ' + req.socket.remoteAddress + ':' + req.socket.remotePort + ' size: ' + width + 'x' + height);
+    req.on('data', function(data) {
+      socketServer.broadcast(data, {
+        binary: true
       });
-    } else {
-      console.log('Failed Stream Connection: ' + req.socket.remoteAddress + req.socket.remotePort + ' - wrong secret.');
-      res.end();
-    }
+    });
   });
 
   exec('ffmpeg -s ' + height + 'x' + width + ' -f video4linux2 -i /dev/video0 -f mpeg1video -vf "transpose=1" -b 800k -r 30 http://127.0.0.1:80/stream/');
