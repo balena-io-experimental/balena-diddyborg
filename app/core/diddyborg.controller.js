@@ -1,4 +1,4 @@
-function DiddyborgController(DiddyborgService, $mdSidenav, $mdDialog, $sce) {
+function DiddyborgController(DiddyborgService, $mdSidenav, $mdDialog, $sce, $scope) {
   'use strict';
   var ctrl = this;
   this.token = '';
@@ -29,9 +29,9 @@ function DiddyborgController(DiddyborgService, $mdSidenav, $mdDialog, $sce) {
 
   function openTokenModal() {
     $mdDialog.show({
-      // controller: ,
       templateUrl: 'app/partials/tokenModal.template.html',
-      parent: angular.element(document.body),
+      scope: $scope,
+      preserveScope: true,
       clickOutsideToClose: true
     });
   }
