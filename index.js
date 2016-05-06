@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  // const pbr = require('picoborgrev').picoborgrev();
+  const pbr = require('picoborgrev').picoborgrev();
   const app = require('express')();
   // const http = require('http').Server(app);
   const expressWs = require('express-ws')(app);
@@ -27,36 +27,39 @@
   // io.on('connection', function(socket,) {
   app.ws('/motor', function(socket, req) {
     socket.on('message', function(msg) {
-      console.log('msg', msg);
+      try {
+        msg = JSON.parse(msg);
+      } catch(err) {
+        console.log('Message json parse error: ' + err);
+        return;
+      }
 
-      let event = msg.event;
-      let power = msg.power;
-      let userToken = msg.token;
-
-      if (userToken == token) {
-        switch (event) {
+      if (msg.token == token) {
+        switch (msg.event) {
           case 'motor1':
-            pbr.SetMotor1(power * MotorsGaugeCohefficient, function(err) {
+            pbr.SetMotor1(msg.power * MotorsGaugeCohefficient, function(err) {
               if (err) {
                 console.error(err);
               }
             });
             break;
           case 'motor2':
-            pbr.SetMotor2(power * MotorsGaugeCohefficient, function(err) {
+            pbr.SetMotor2(msg.power * MotorsGaugeCohefficient, function(err) {
               if (err) {
                 console.error(err);
               }
             });
             break;
           case 'motors':
-            pbr.SetMotors(power * MotorsGaugeCohefficient, function(err) {
+            pbr.SetMotors(msg.power * MotorsGaugeCohefficient, function(err) {
               if (err) {
                 console.error(err);
               }
             });
             break;
         }
+      } else {
+        console.log('Unauthorized');
       }
     });
 
@@ -162,7 +165,7 @@
 
   exec('ffmpeg -s ' + width + 'x' + height + ' -f video4linux2 -i /dev/video0 -f mpeg1video -vf "transpose=2,transpose=2"  -b 800k -r 30 http://127.0.0.1:80/stream/');
 
-  app.listen(8080, function() {
+  app.listen(80, function() {
     console.log('AccessToken: ' + chalk.cyan(token));
   });
 })();
