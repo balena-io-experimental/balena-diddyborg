@@ -1,0 +1,23 @@
+function stream() {
+ 'use strict';
+ return {
+   restrict: 'A',
+   link: function ($scope, $element, $attrs) {
+     // var host = window.location.host;
+     console.log('test directive');
+     var host = '192.168.178.49';
+     // Setup the WebSocket connection and start the player
+     var client = new WebSocket('ws://' + host + '/stream');
+
+     var canvas = document.getElementById('videoCanvas');
+     console.log('canvas', canvas);
+     var player = new jsmpeg(client, {
+       canvas: canvas
+     });
+   }
+ };
+}
+
+angular
+ .module('ngDiddyborg')
+ .directive('stream', stream);
