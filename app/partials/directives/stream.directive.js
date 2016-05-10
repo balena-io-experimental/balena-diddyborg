@@ -3,9 +3,7 @@ function stream() {
  return {
    restrict: 'A',
    link: function ($scope, $element, $attrs) {
-     // var host = window.location.host;
-     console.log('test directive');
-     var host = '192.168.178.49';
+     var host = window.location.host;
      // Setup the WebSocket connection and start the player
      var client = new WebSocket('ws://' + host + '/stream');
 
