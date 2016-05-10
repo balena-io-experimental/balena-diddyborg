@@ -8,7 +8,6 @@ function stream() {
      var client = new WebSocket('ws://' + host + '/stream');
 
      var canvas = document.getElementById('videoCanvas');
-     console.log('canvas', canvas);
      var player = new jsmpeg(client, {
        canvas: canvas
      });

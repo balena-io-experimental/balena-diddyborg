@@ -12,6 +12,7 @@
   const randomToken = require('random-token');
   const token = randomToken(6);
   const STREAM_MAGIC_BYTES = 'jsmp';
+  const SERVER_PORT = process.env.SERVER_PORT || 80;
 
   let MotorsGaugeCohefficient = (process.env.INVERT_MOTORS_DIRECTION === "0") ? 1 : -1;
   /* Express */
@@ -163,9 +164,9 @@
     });
   });
 
-  exec('ffmpeg -s ' + width + 'x' + height + ' -f video4linux2 -i /dev/video0 -f mpeg1video -vf "transpose=2,transpose=2"  -b 800k -r 30 http://127.0.0.1:80/stream/');
+  exec('ffmpeg -s ' + width + 'x' + height + ' -f video4linux2 -i /dev/video0 -f mpeg1video -vf "transpose=2,transpose=2"  -b 800k -r 30 http://127.0.0.1:' + SERVER_PORT + '/stream/');
 
-  app.listen(process.env.SERVER_PORT || 80, function() {
+  app.listen(SERVER_PORT, function() {
     console.log('AccessToken: ' + chalk.cyan(token));
   });
 })();

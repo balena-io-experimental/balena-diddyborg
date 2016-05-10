@@ -7,7 +7,6 @@ function DiddyborgService() {
 
   let connected = false;
   socket.onopen = function(event) {
-    console.log('Motors connected');
     connected = true;
 
     socket.onclose = function(event) {
