@@ -6,7 +6,6 @@ function keyboard() {
       var body = document.querySelector('body');
 
       body.onkeydown = function(e) {
-        console.log(e.keyCode);
         $('.arrow-selected').removeClass('arrow-selected');
         if (e.keyCode === 37) {
           $('#arrow-left').toggleClass('arrow-selected');
