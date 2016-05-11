@@ -2,20 +2,24 @@ function keyboard() {
   'use strict';
   return {
     restrict: 'AE',
-    link: function ($scope, $element, $attrs) {
-      var actionMap = {
-        37: $scope.digital.setMotors(-100, 100),  //left
-        38: $scope.digital.setMotors(100, 100),   //up
-        39: $scope.digital.setMotors(100, -100),  //right
-        40: $scope.digital.setMotors(-100, -100)  //down
-      };
+    link: function($scope, $element, $attrs) {
       var body = document.querySelector('body');
 
-      body.onkeydown = function (e) {
-        if (typeof actionMap[e.keyCode] !== 'function') {
-          return;
+      body.onkeydown = function(e) {
+        $('.arrow-selected').removeClass('arrow-selected');
+        if (e.keyCode === 37) {
+          $('#arrow-left').toggleClass('arrow-selected');
+          $scope.digital.setMotors(-100, 100);
+        } else if (e.keyCode === 38) {
+          $('#arrow-up').toggleClass('arrow-selected');
+          $scope.digital.setMotors(100, 100);
+        } else if (e.keyCode === 39) {
+          $('#arrow-right').toggleClass('arrow-selected');
+          $scope.digital.setMotors(100, -100)
+        } else if (e.keyCode === 40) {
+          $('#arrow-down').toggleClass('arrow-selected');
+          $scope.digital.setMotors(-100, -100)
         }
-        actionMap[e.keyCode]();
       };
     }
   };

@@ -1,11 +1,11 @@
 <div ng-controller="GamepadCtrl">
     <md-content layout="column" layout-padding layout-align="center center" keyboard>
         <div>
-          <md-icon>arrow_upward</md-icon>
+          <md-icon id="arrow-up">arrow_upward</md-icon>
         </div>
         <div id="keyboard-canvas-container" layout="row" layout-align="center center">
           <div flex="10">
-            <md-icon>arrow_back</md-icon>
+            <md-icon id="arrow-left">arrow_back</md-icon>
           </div>
           <div id="stream" flex="80" stream>
             <canvas id="videoCanvas" width="640" height="480">
@@ -18,11 +18,11 @@
             </canvas>
           </div>
           <div flex="10" class="text-right">
-            <md-icon>arrow_forward</md-icon>
+            <md-icon id="arrow-right">arrow_forward</md-icon>
           </div>
         </div>
         <div>
-          <md-icon>arrow_downward</md-icon>
+          <md-icon id="arrow-down">arrow_downward</md-icon>
         </div>
         <p>Power ({{digital.power | number:0}} - 100)</p>
         <md-input-container id="touch-power-slider">
