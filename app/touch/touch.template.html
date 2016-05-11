@@ -37,7 +37,7 @@
     <md-divider></md-divider>
     <p>Power ({{digital.power | number:0}} - 100)</p>
     <md-input-container id="touch-power-slider">
-      <md-slider aria-label="lx" class="md-accent" class="md-primary" id="lx-slider" max="100" md-range min="0" ng-model="digital.power" step="1"></md-slider>
+      <md-slider aria-label="lx" class="md-primary md-accent" id="lx-slider" max="100" md-range min="0" ng-model="digital.power" step="1"></md-slider>
     </md-input-container>
     <md-button class="touch-btn md-whiteframe-4dp md-raised md-warn" ng-click="digital.stopMotors(0, 0)">
       <md-icon>stop</md-icon>
