@@ -17,6 +17,13 @@ md-divider{
   font-weight: bolder;
 }
 
+.m-t-10{
+  margin-top: 10px;
+}
+.m-b-10{
+  margin-bottom: 10px;
+}
+
 /*END GLOBAL*/
 
 md-slider[md-vertical] {
@@ -90,4 +97,12 @@ md-sidenav > div > header {
   /* Always stretch the canvas to 640x480, regardless of its internal size. */
   height: auto;
   background: black;
+}
+
+/*CANVAS*/
+.video-canvas{
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
 }

@@ -4,8 +4,11 @@ function DiddyborgController(DiddyborgService, $mdSidenav, $mdDialog, $sce, $sco
   this.token = '';
   this.motor1 = 0;
   this.motor2 = 0;
+  this.cameraFlipped = false;
+
   this.toggleSidenav = openSidenav;
   this.openTokenModal = openTokenModal;
+  this.flipCamera = flipCamera;
 
   this.setMotorRight = function(gaugeRight) {
     if (!gaugeRight) {
@@ -34,6 +37,10 @@ function DiddyborgController(DiddyborgService, $mdSidenav, $mdDialog, $sce, $sco
       preserveScope: true,
       clickOutsideToClose: true
     });
+  }
+
+  function flipCamera() {
+    ctrl.cameraFlipped = !ctrl.cameraFlipped;
   }
 
 }
