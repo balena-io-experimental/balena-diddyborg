@@ -21,8 +21,7 @@ function keyboard() {
           $scope.digital.setMotors(-1, -1);
         } else if (e.keyCode === 32) {
           $('.arrow-selected').removeClass('arrow-selected');
-          $scope.digital.power = 0;
-          $scope.$digest();
+          $scope.digital.setMotors(0, 0);
         }
       };
     }
