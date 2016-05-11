@@ -12,24 +12,24 @@
       </canvas>
     </div>
     <md-content>
-      <md-button class="touch-btn md-whiteframe-4dp md-raised md-primary" ng-click="digital.setMotors(100, 100)">
+      <md-button class="touch-btn md-whiteframe-4dp md-raised md-primary" ng-click="digital.setMotors(1, 1)">
         <md-icon>arrow_upward</md-icon>
         <span>Up</span>
       </md-button>
     </md-content>
     <md-content>
-      <md-button class="touch-btn md-whiteframe-4dp md-raised md-primary" ng-click="digital.setMotors(-100, 100)">
+      <md-button class="touch-btn md-whiteframe-4dp md-raised md-primary" ng-click="digital.setMotors(-1, 1)">
         <md-icon>arrow_back</md-icon>
         <span>Left</span>
       </md-button>
       <span flex></span>
-      <md-button class="touch-btn md-whiteframe-4dp md-raised md-primary" ng-click="digital.setMotors(100, -100)">
+      <md-button class="touch-btn md-whiteframe-4dp md-raised md-primary" ng-click="digital.setMotors(1, -1)">
         <span>Right</span>
         <md-icon>arrow_forward</md-icon>
       </md-button>
     </md-content>
     <md-content>
-      <md-button class="touch-btn md-whiteframe-4dp md-raised md-primary" ng-click="digital.setMotors(-100, -100)">
+      <md-button class="touch-btn md-whiteframe-4dp md-raised md-primary" ng-click="digital.setMotors(-1, -1)">
         <md-icon>arrow_downward</md-icon>
         <span>Down</span>
       </md-button>
@@ -39,7 +39,7 @@
     <md-input-container id="touch-power-slider">
       <md-slider aria-label="lx" class="md-accent" class="md-primary" id="lx-slider" max="100" md-range min="0" ng-model="digital.power" step="1"></md-slider>
     </md-input-container>
-    <md-button class="touch-btn md-whiteframe-4dp md-raised md-warn">
+    <md-button class="touch-btn md-whiteframe-4dp md-raised md-warn" ng-click="digital.stopMotors(0, 0)">
       <md-icon>stop</md-icon>
       <span>Stop</span>
     </md-button>

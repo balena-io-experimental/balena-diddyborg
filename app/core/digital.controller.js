@@ -12,6 +12,15 @@ function DigitalController(DiddyborgService) {
     this.motor2 = DiddyborgService.motorLeft(parseInt((ctrl.power) * left), ctrl.token);
   };
 
+  this.stopMotors = function(left, right) {
+    if (!ctrl.power) {
+      return;
+    }
+    ctrl.power = 0;
+    this.motor1 = DiddyborgService.motorRight(parseInt((ctrl.power) * right), ctrl.token);
+    this.motor2 = DiddyborgService.motorLeft(parseInt((ctrl.power) * left), ctrl.token);
+  };
+
 }
 
 angular
