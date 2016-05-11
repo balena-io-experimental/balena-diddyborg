@@ -6,6 +6,7 @@ function keyboard() {
       var body = document.querySelector('body');
 
       body.onkeydown = function(e) {
+        console.log(e.keyCode);
         $('.arrow-selected').removeClass('arrow-selected');
         if (e.keyCode === 37) {
           $('#arrow-left').toggleClass('arrow-selected');
@@ -19,6 +20,10 @@ function keyboard() {
         } else if (e.keyCode === 40) {
           $('#arrow-down').toggleClass('arrow-selected');
           $scope.digital.setMotors(-1, -1)
+        } else if (e.keyCode === 32) {
+          $('.arrow-selected').removeClass('arrow-selected');
+          $scope.digital.power = 0;
+          $scope.digital.setMotors(0, 0);
         }
       };
     }
