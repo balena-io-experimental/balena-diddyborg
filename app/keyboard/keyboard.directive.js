@@ -15,14 +15,14 @@ function keyboard() {
           $scope.digital.setMotors(1, 1);
         } else if (e.keyCode === 39) {
           $('#arrow-right').toggleClass('arrow-selected');
-          $scope.digital.setMotors(1, -1)
+          $scope.digital.setMotors(1, -1);
         } else if (e.keyCode === 40) {
           $('#arrow-down').toggleClass('arrow-selected');
-          $scope.digital.setMotors(-1, -1)
+          $scope.digital.setMotors(-1, -1);
         } else if (e.keyCode === 32) {
           $('.arrow-selected').removeClass('arrow-selected');
           $scope.digital.power = 0;
-          $scope.digital.setMotors(0, 0);
+          $scope.$digest();
         }
       };
     }

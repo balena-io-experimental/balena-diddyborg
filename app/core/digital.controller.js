@@ -1,4 +1,4 @@
-function DigitalController(DiddyborgService) {
+function DigitalController(DiddyborgService, $scope) {
   'use strict';
   var ctrl = this;
 
@@ -8,8 +8,8 @@ function DigitalController(DiddyborgService) {
     if (!ctrl.power) {
       return;
     }
-    this.motor1 = DiddyborgService.motorRight(parseInt((ctrl.power) * right), ctrl.token);
-    this.motor2 = DiddyborgService.motorLeft(parseInt((ctrl.power) * left), ctrl.token);
+    this.motor1 = DiddyborgService.motorRight(parseInt((ctrl.power) * right), $scope.diddyborg.token);
+    this.motor2 = DiddyborgService.motorLeft(parseInt((ctrl.power) * left), $scope.diddyborg.token);
   };
 
   this.stopMotors = function(left, right) {
@@ -17,8 +17,8 @@ function DigitalController(DiddyborgService) {
       return;
     }
     ctrl.power = 0;
-    this.motor1 = DiddyborgService.motorRight(parseInt((ctrl.power) * right), ctrl.token);
-    this.motor2 = DiddyborgService.motorLeft(parseInt((ctrl.power) * left), ctrl.token);
+    this.motor1 = DiddyborgService.motorRight(parseInt((ctrl.power) * right), $scope.diddyborg.token);
+    this.motor2 = DiddyborgService.motorLeft(parseInt((ctrl.power) * left), $scope.diddyborg.token);
   };
 
 }
