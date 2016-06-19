@@ -8,7 +8,7 @@ this application is meant to be deployed to [RaspberryPi](https://www.raspberryp
 [Environment Variables](http://docs.resin.io/management/env-vars) parameters:
 
 Parameter | Value | Description
------------- | -------------
+------------ | ------------- | -------------
 **INVERT_MOTORS_DIRECTION** | `0`,`1` | if set to `1` inverts direction handling of motors.
 **INVERT_JOYPAD_DIRECTION** | `0`,`1` | if set to `1` inverts direction handling of sticks.
 **INVERT_JOYPAD_AXES** | `0`,`1` | if set to `1` swaps L and R sticks.
